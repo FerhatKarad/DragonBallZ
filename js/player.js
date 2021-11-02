@@ -1,10 +1,11 @@
 class Player {
 
     constructor() {
-        this.width = 40;
-        this.height = 40;
+        this.width = 90;
+        this.height = 130;
         this.x = 0;
         this.y = height - this.height;
+        this.shot
 
     }
 
@@ -57,6 +58,11 @@ class Player {
         if (keyIsDown(40)) {
             this.moveDown()
         }
+
+        if (keyIsDown(32)) {
+            this.shot
+       }
+
 
     }
 }
