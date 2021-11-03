@@ -5,7 +5,10 @@ class Game {
       this.coinImage
       this.shotImage
       this.enemyImage
+      this.explosionImage 
+      this.gameOverImage
       this.audio
+      this.isGameOver = false;
    }
 
    setup() {
@@ -30,6 +33,8 @@ class Game {
       this.coinImage = loadImage('/js/Dragonball/Dragonball.gif')
       this.shotImage = loadImage('/js/shoot/shoot1.png')
       this.enemyImage = loadImage('/js/shoot/Saibament.png')
+      this.explosionImage = loadImage('/js/explosion/explosion.gif')
+      this.gameOverImage = loadImage('/js/shoot/gameover.png')
 
 
       this.audio = new Audio('./js/music/DragonBallSound.mp3');
@@ -40,24 +45,37 @@ class Game {
 
       if (frameCount === 2) this.audio.play()
 
-      clear()
-      this.background.draw()
-      this.player.draw()
-      this.drawObstacles()
-      this.drawShots()
-      this.drawEnemies()
-      this.hitEnemy()
-    //  this.collisionGoku()
-   
-    this.enemies = this.enemies.filter(enemy => {
-      if (enemy.collisionGoku(this.player))  {
-         return false
+      if (!this.isGameOver) {
+         clear()
+         this.background.draw()
+         this.player.draw()
+         this.drawObstacles()
+         this.drawShots()
+         this.drawEnemies()
+         this.hitEnemy()
+         this.hitGoku()
       } else {
-         return true
+         if (this.isGameOver){
+            image(this.gameOverImage, 250,150,500,300)
+         }
+
       }
+
+
+
+   }
+   hitGoku() {
+      this.enemies = this.enemies.filter(enemy => {
+         if (enemy.collisionGoku(this.player)) {
+            this.isGameOver = true;
+            return false
+         } else {
+            return true
+         }
       })
-    
-}
+
+   }
+
    drawObstacles() {
       if (frameCount % 1000 === 0) {
          this.obstacles.push(new Obstacle(this.coinImage))
@@ -116,25 +134,28 @@ class Game {
 
 
       const enemyX = enemy.x
-      const enemyY = enemy.y + 10
+      const enemyY = enemy.y + 20
 
       for (let [index, shot] of this.shots.entries()) {
          const shotX = shot.x
          const shotY = shot.y
-         if (dist(shotX, shotY, enemyX, enemyY) < 50) {
+         if (dist(shotX, shotY, enemyX, enemyY) < 40) {
+            image(this.explosionImage, enemy.x,enemy.y,70,100)
             this.shots.splice(index, 1)
+          //  image(this.explosionImage, enemy.x,enemy.y,70,100)
             return true
          }
       }
       return false
    }
 
-
-
-
-
    shoot() {
       this.shots.push(new Shot(this.shotImage, this.player.x + 40, this.player.y + 30))
+   }
+
+   gameReset() {
+      // resetten wenn neues Spiel angefangen werden soll
+     
    }
 
 }
