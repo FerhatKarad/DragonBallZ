@@ -1,18 +1,20 @@
 class Shot {
-    constructor(image) {
+    constructor(image, x, y) {
         this.image = image
-        this.x = game.player.x
-        this.y = game.player.y
-        this.width = 20
-        this.height = 20
+        this.x = x
+        this.y = y
+        this.width = 30
+        this.height = 15
     }
+
+    
 
     draw() {
 
-       // this.x += 5
-        image(game.shotImage, 100,100,100,100)
-
-
+        this.x += 10
+        image(game.shotImage, this.x, this.y, this.width, this.height)
         }
     }
+
+
 

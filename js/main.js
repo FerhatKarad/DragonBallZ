@@ -2,18 +2,17 @@ const game = new Game();
 
 function preload() {
 	game.preload()
+
 }
 
 function setup() {
 	createCanvas(1000, 600)
 	game.setup()
+
 }
 
 function draw() {
-
-	game.draw()
-	//game.shots[0].draw()
-
+		game.draw()
 }
 
 
@@ -34,7 +33,6 @@ function keyPressed() {
 	}
 
 	if (keyCode === 32) {
-		 const sot = new Shot(game.shotImage)
-		 sot.draw()
+		game.shoot();
 	}
 }

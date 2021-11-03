@@ -12,25 +12,25 @@ class Player {
     moveUp() {
 
         if (this.y >= 0) {
-            this.y -= 10;
+            this.y -= 5;
         }
 
     }
     moveDown() {
         if (this.y <= 600 - this.height) {
-            this.y += 10;
+            this.y += 5;
         }
     }
 
     moveRight() {
         if (this.x <= 1000 - this.width) {
-            this.x += 10;
+            this.x += 5;
         }
     }
 
     moveLeft() {
         if (this.x >= 0) {
-            this.x -= 10;
+            this.x -= 5;
         }
     }
 
@@ -60,7 +60,7 @@ class Player {
         }
 
         if (keyIsDown(32)) {
-            this.shot
+            //this.shot
        }
 
 
