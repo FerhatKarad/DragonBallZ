@@ -31,13 +31,15 @@ class Game {
       this.shotImage = loadImage('/js/shoot/shoot1.png')
       this.enemyImage = loadImage('/js/shoot/Saibament.png')
 
-      this.audio = new Audio('./js/music/Start.mp3');
+
+      this.audio = new Audio('./js/music/DragonBallSound.mp3');
    }
 
 
    draw() {
 
-      //if (frameCount === 2) this.audio.play()
+      if (frameCount === 2) this.audio.play()
+
       clear()
       this.background.draw()
       this.player.draw()
@@ -45,6 +47,46 @@ class Game {
       this.drawShots()
       this.drawEnemies()
       this.hitEnemy()
+    //  this.collisionGoku()
+   
+    this.enemies = this.enemies.filter(enemy => {
+      if (enemy.collisionGoku(this.player))  {
+         return false
+      } else {
+         return true
+      }
+      })
+    
+}
+   drawObstacles() {
+      if (frameCount % 1000 === 0) {
+         this.obstacles.push(new Obstacle(this.coinImage))
+      }
+      this.obstacles.forEach(function (obstacle) {
+         obstacle.draw()
+      })
+      this.obstacles = this.obstacles.filter(obstacle => {
+         if (obstacle.collision(this.player) || obstacle.x < 0 - obstacle.width) {
+            return false
+         } else {
+            return true
+         }
+      })
+   }
+
+   drawShots() {
+
+      this.shots.forEach(function (shot) {
+         shot.draw()
+      })
+
+      this.shots = this.shots.filter(shot => {
+         if (shot.x > 1000 + shot.width) {
+            return false
+         } else {
+            return true
+         }
+      })
    }
 
 
@@ -74,11 +116,11 @@ class Game {
 
 
       const enemyX = enemy.x
-      const enemyY = enemy.y
+      const enemyY = enemy.y + 10
 
       for (let [index, shot] of this.shots.entries()) {
-         const shotX = shot.x + 35
-         const shotY = shot.y - 50
+         const shotX = shot.x
+         const shotY = shot.y
          if (dist(shotX, shotY, enemyX, enemyY) < 50) {
             this.shots.splice(index, 1)
             return true
@@ -87,36 +129,9 @@ class Game {
       return false
    }
 
-   drawShots() {
 
-      this.shots.forEach(function (shot) {
-         shot.draw()
-      })
 
-      this.shots = this.shots.filter(shot => {
-         if (shot.x > 1000 + shot.width) {
-            return false
-         } else {
-            return true
-         }
-      })
-   }
 
-   drawObstacles() {
-      if (frameCount % 1000 === 0) {
-         this.obstacles.push(new Obstacle(this.coinImage))
-      }
-      this.obstacles.forEach(function (obstacle) {
-         obstacle.draw()
-      })
-      this.obstacles = this.obstacles.filter(obstacle => {
-         if (obstacle.collision(this.player) || obstacle.x < 0 - obstacle.width) {
-            return false
-         } else {
-            return true
-         }
-      })
-   }
 
    shoot() {
       this.shots.push(new Shot(this.shotImage, this.player.x + 40, this.player.y + 30))

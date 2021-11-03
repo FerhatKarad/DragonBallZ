@@ -10,7 +10,7 @@ class Enemy {
 
     draw() {
 
-        this.x -= 3
+        this.x -= 5
         image(this.image, this.x, this.y, this.width, this.height)
 
     }
