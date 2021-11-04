@@ -11,7 +11,6 @@ function setup() {
 	createCanvas(1000, 600)
 	game.setup()
 	
-
 }
 
 function draw() {

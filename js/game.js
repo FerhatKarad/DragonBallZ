@@ -8,25 +8,28 @@ class Game {
       this.explosionImage
       this.gameOverImage
       this.startImage
+      this.bossImage
+      this.freezerShotImage
       this.isGameOver = false;
       this.score = 0;
       this.kills = 0;
       this.gameStart = false;
-
+      this.isGameWin = false;
    }
 
    setup() {
       this.background = new Background()
       this.player = new Player()
+      this.boss = new Boss()
       this.song = new Audio('js/music/Dbz.mp3')
       this.hitSound = new Audio('js/music/kill.mp3');
       this.shotSound = new Audio('js/music/shot1.wav');
       this.collectSound = new Audio('js/music/collect.mp3');
       this.endSound = new Audio('js/music/freezer.mp3');
       this.obstacles = []
+      this.attacks = []
       this.shots = []
       this.enemies = []
-
    }
 
    preload() {
@@ -39,34 +42,35 @@ class Game {
          { src: loadImage('js/Background/background5.png'), x: 0, speed: 0.5 },
       ]
 
-      this.playerImage = loadImage('js/player/Goku.gif')
+      this.playerImage = loadImage('js/shoot/Goku.gif')
       this.coinImage = loadImage('js/Dragonball/Dragonball.gif')
       this.shotImage = loadImage('js/shoot/shoot1.png')
       this.enemyImage = loadImage('js/shoot/Saibament.png')
       this.gameOverImage = loadImage('js/shoot/gameover.png')
       this.explosionImage = loadImage('js/explosion/explosion.gif')
       this.startImage = loadImage(('js/shoot/startgame1.jpg'))
-
-
-      //  song = loadSound ('./js/music/DragonBallSound.mp3');
-      //  song = loadSound ('./js/music/Ki.mp3')
+      this.bossImage = loadImage('js/shoot/freezer.gif')
+      this.freezerShotImage = loadImage('js/shoot/reverse.gif')
+      this.winImage = loadImage('js/shoot/win.jpg')
    }
 
-
    draw() {
-      
       if (this.gameStart === false) {
          image(this.startImage, 0, 0, 1000, 600)
       } else if (this.gameStart === true) {
          if (!this.isGameOver) {
             this.song.play()
             this.background.draw()
+            this.boss.draw()
             this.player.draw()
             this.drawObstacles()
             this.drawShots()
             this.drawEnemies()
             this.hitEnemy()
             this.hitGoku()
+            this.drawFreezerShots()
+            this.isGameWin = this.hasWon()
+            return this.isGameOver
 
          } else {
             if (this.isGameOver) {
@@ -83,34 +87,20 @@ class Game {
          text('Kills', 50, 100);
          text(this.kills, 200, 100);
       }
-
-      // if (!this.isGameOver) {
-
-      //    this.background.draw()
-      //    this.player.draw()
-      //    this.drawObstacles()
-      //    this.drawShots()
-      //    this.drawEnemies()
-      //    this.hitEnemy()
-      //    this.hitGoku()
-
-      // } else {
-      //    if (this.isGameOver) {
-      //       image(this.gameOverImage, 250, 150, 500, 300)
-      //    }
-
-      // }
-      // text('DragonBalls', 50, 50);
-      // textFont("Roboto Mono");
-      // textSize(25);
-      // text(this.score, 200, 50);
-      // text('Kills', 50, 100);
-      // text(this.kills, 200, 100);
-
-
-
-
    }
+
+   hasWon() {
+
+      if (this.score > 6) {
+         image(this.winImage, 0, 0, 1000, 600)
+         this.song.pause()
+
+         return noLoop()
+
+
+      }
+   }
+
    hitGoku() {
       this.enemies = this.enemies.filter(enemy => {
          if (enemy.collisionGoku(this.player)) {
@@ -120,11 +110,27 @@ class Game {
             return true
          }
       })
+   }
+   drawFreezerShots() {
+      if (frameCount % 50 === 0) {
+         this.attacks.push(new Attacks(this.freezerShotImage))
+      }
+      this.attacks.forEach(function (attack) {
+         attack.draw()
+      })
+      this.attacks = this.attacks.filter(attack => {
+         if (attack.shotCollision(this.player)) {
+            this.isGameOver = true;
+            return false
+         } else {
+            return true
 
+         }
+      })
    }
 
    drawObstacles() {
-      if (frameCount % 1100 === 0) {
+      if (frameCount % 1000 === 0) {
          this.obstacles.push(new Obstacle(this.coinImage))
       }
       this.obstacles.forEach(function (obstacle) {
@@ -140,11 +146,9 @@ class Game {
    }
 
    drawShots() {
-
       this.shots.forEach(function (shot) {
          shot.draw()
       })
-
       this.shots = this.shots.filter(shot => {
          if (shot.x > 1000 + shot.width) {
             return false
@@ -154,10 +158,10 @@ class Game {
       })
    }
 
-
    drawEnemies() {
       if (frameCount % 100 === 0) {
          this.enemies.push(new Enemy(this.enemyImage))
+
       }
       this.enemies.forEach(function (enemy) {
          enemy.draw()
@@ -173,10 +177,8 @@ class Game {
    }
 
    hitEnemy(enemy) {
-
       if (!enemy) return false
       if ((this.shots.length === 0)) return false;
-
 
       const enemyX = enemy.x
       const enemyY = enemy.y + 20
@@ -200,11 +202,7 @@ class Game {
       this.shots.push(new Shot(this.shotImage, this.player.x + 40, this.player.y + 30))
       this.shotSound.play()
    }
-
-
 }
-
-
 
    // gameReset() {
    //    // resetten wenn neues Spiel angefangen werden soll

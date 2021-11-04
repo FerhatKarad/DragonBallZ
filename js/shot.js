@@ -7,8 +7,6 @@ class Shot {
         this.height = 15
     }
 
-    
-
     draw() {
 
         this.x += 10
