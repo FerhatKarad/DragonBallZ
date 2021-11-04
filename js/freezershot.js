@@ -25,6 +25,6 @@ class Attacks {
 
 draw(){
         this.x -= 12
-        image(this.image, this.x, this.y, this.width, this.height)
+        image(this.image, this.x, this.y-10, this.width, this.height)
 }
 }
