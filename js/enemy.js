@@ -5,12 +5,13 @@ class Enemy {
         this.y = (Math.random() * height) / 1.5
         this.width = 70
         this.height = 100
+        this.kills = 0
 
     }
 
     draw() {
 
-        this.x -= 5
+        this.x -= 6
         image(this.image, this.x, this.y, this.width, this.height)
 
     }
@@ -26,8 +27,11 @@ class Enemy {
             return false 
         } else {
             console.log('collisionGoku')
+            
             return true
         }
     }
+
+  
 
 }

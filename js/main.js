@@ -1,20 +1,24 @@
 const game = new Game();
 
+
 function preload() {
 	game.preload()
+
 
 }
 
 function setup() {
 	createCanvas(1000, 600)
 	game.setup()
+	
 
 }
 
 function draw() {
-		game.draw()
+	    clear()
+	    game.draw()
+	  
 }
-
 
 
 function keyPressed() {
@@ -34,5 +38,10 @@ function keyPressed() {
 
 	if (keyCode === 32) {
 		game.shoot();
+		
+	}
+
+	if (keyCode === ENTER){
+		game.gameStart = true ;
 	}
 }

@@ -17,7 +17,8 @@ class Obstacle {
 			
 			return false
 		} else {
-			
+			game.collectSound.play()
+			game.score += 1
 			return true
 		}
 
@@ -26,7 +27,7 @@ class Obstacle {
 
  draw () {
     
-		this.x--
+		this.x-=10
 		image(this.image, this.x, this.y, this.width, this.height)
 
         

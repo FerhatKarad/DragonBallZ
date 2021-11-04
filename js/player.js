@@ -62,7 +62,6 @@ class Player {
         }
 
         if (keyIsDown(32)) {
-            //this.shot
         }
 
 
