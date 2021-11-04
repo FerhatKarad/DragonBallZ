@@ -6,8 +6,7 @@ class Obstacle {
 		this.width = 50
 		this.height = 50
 	}
-    collision(playerInfo) {
-		
+    collision(playerInfo) {		
 		const playerX = playerInfo.x + playerInfo.width / 2
 		const playerY = playerInfo.y + playerInfo.height / 2
 		
@@ -21,16 +20,10 @@ class Obstacle {
 			game.score += 1
 			return true
 		}
-
-
     }
 
- draw () {
-    
+ draw () {    
 		this.x-=10
-		image(this.image, this.x, this.y, this.width, this.height)
-
-        
-	}
- 
+		image(this.image, this.x, this.y, this.width, this.height)   
+	} 
 }

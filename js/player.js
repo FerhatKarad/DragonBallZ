@@ -1,16 +1,12 @@
 class Player {
-
     constructor() {
         this.width = 90;
         this.height = 130;
         this.x = 0;
         this.y = height - this.height;
         this.shot
-
     }
-
     
-
     moveUp() {
 
         if (this.y >= 0) {
@@ -38,8 +34,6 @@ class Player {
 
 
     draw() {
-
-
         image(game.playerImage, this.x, this.y, this.width, this.height)
 
         if (keyIsDown(37)) {
@@ -63,7 +57,5 @@ class Player {
 
         if (keyIsDown(32)) {
         }
-
-
     }
 }

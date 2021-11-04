@@ -6,12 +6,10 @@ class Enemy {
         this.width = 70
         this.height = 100
         this.kills = 0
-
     }
 
     draw() {
-
-        this.x -= 6
+        this.x -= 9
         image(this.image, this.x, this.y, this.width, this.height)
 
     }
@@ -25,13 +23,11 @@ class Enemy {
         if (dist(enemyX, enemyY, playerX, playerY) > 50) {
 
             return false 
+            
         } else {
             console.log('collisionGoku')
-            
+
             return true
         }
     }
-
-  
-
 }

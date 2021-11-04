@@ -7,9 +7,7 @@ class Attacks {
         this.height = 100
     }
 
-
     shotCollision(playerInfo) {
-		
 		const playerX = playerInfo.x + playerInfo.width / 2
 		const playerY = playerInfo.y + playerInfo.height / 2
 		
@@ -18,16 +16,15 @@ class Attacks {
 		if (dist(shotX, shotY, playerX, playerY) > 50) {
 			
 			return false
+
 		} else {
 			
 			return true
-		}
-
-    }
+	}
+ }
 
 draw(){
-
-    this.x -= 9
+        this.x -= 12
         image(this.image, this.x, this.y, this.width, this.height)
 }
 }

@@ -1,24 +1,18 @@
 const game = new Game();
 
-
 function preload() {
 	game.preload()
-
-
 }
 
 function setup() {
 	createCanvas(1000, 600)
-	game.setup()
-	
+	game.setup()	
 }
 
 function draw() {
 	    clear()
-	    game.draw()
-	  
+	    game.draw()	  
 }
-
 
 function keyPressed() {
 	if (keyCode === 37) {

@@ -42,16 +42,16 @@ class Game {
          { src: loadImage('js/Background/background5.png'), x: 0, speed: 0.5 },
       ]
 
-      this.playerImage = loadImage('js/shoot/Goku.gif')
-      this.coinImage = loadImage('js/Dragonball/Dragonball.gif')
-      this.shotImage = loadImage('js/shoot/shoot1.png')
-      this.enemyImage = loadImage('js/shoot/Saibament.png')
-      this.gameOverImage = loadImage('js/shoot/gameover.png')
-      this.explosionImage = loadImage('js/explosion/explosion.gif')
-      this.startImage = loadImage(('js/shoot/startgame1.jpg'))
-      this.bossImage = loadImage('js/shoot/freezer.gif')
-      this.freezerShotImage = loadImage('js/shoot/reverse.gif')
-      this.winImage = loadImage('js/shoot/win.jpg')
+      this.playerImage = loadImage('js/pictures/Goku.gif')
+      this.coinImage = loadImage('js/pictures/Dragonball.gif')
+      this.shotImage = loadImage('js/pictures/shoot1.png')
+      this.enemyImage = loadImage('js/pictures/Saibament.png')
+      this.gameOverImage = loadImage('js/pictures/gameover.png')
+      this.explosionImage = loadImage('js/pictures/explosion.gif')
+      this.startImage = loadImage(('js/pictures/startgame1.jpg'))
+      this.bossImage = loadImage('js/pictures/freezer.gif')
+      this.freezerShotImage = loadImage('js/pictures/reverse.gif')
+      this.winImage = loadImage('js/pictures/win.jpg')
    }
 
    draw() {
@@ -78,27 +78,23 @@ class Game {
                this.endSound.play()
                image(this.gameOverImage, 250, 150, 500, 300)
             }
-
-         }
-         text('DragonBalls', 50, 50);
-         textFont("Roboto Mono");
-         textSize(25);
-         text(this.score, 200, 50);
-         text('Kills', 50, 100);
-         text(this.kills, 200, 100);
+            text('DragonBalls', 50, 50);
+            textFont("Roboto Mono");
+            textSize(25);
+            text(this.score, 200, 50);
+            text('Kills', 50, 100);
+            text(this.kills, 200, 100);
+         }       
       }
    }
 
    hasWon() {
+       if (this.score > 6) {
+          image(this.winImage, 0, 0, 1000, 600)
+          this.song.pause()
 
-      if (this.score > 6) {
-         image(this.winImage, 0, 0, 1000, 600)
-         this.song.pause()
-
-         return noLoop()
-
-
-      }
+          return noLoop()
+       }
    }
 
    hitGoku() {
@@ -130,7 +126,7 @@ class Game {
    }
 
    drawObstacles() {
-      if (frameCount % 1000 === 0) {
+      if (frameCount % 600 === 0) {
          this.obstacles.push(new Obstacle(this.coinImage))
       }
       this.obstacles.forEach(function (obstacle) {
@@ -159,7 +155,7 @@ class Game {
    }
 
    drawEnemies() {
-      if (frameCount % 100 === 0) {
+      if (frameCount % 70 === 0) {
          this.enemies.push(new Enemy(this.enemyImage))
 
       }
