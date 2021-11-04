@@ -44,7 +44,7 @@ class Game {
 
       this.playerImage = loadImage('js/pictures/Goku.gif')
       this.coinImage = loadImage('js/pictures/Dragonball.gif')
-      this.shotImage = loadImage('js/pictures/shoot1.png')
+      this.shotImage = loadImage('js/pictures/shot1.gif')
       this.enemyImage = loadImage('js/pictures/Saibament.png')
       this.gameOverImage = loadImage('js/pictures/gameover.png')
       this.explosionImage = loadImage('js/pictures/explosion.gif')
@@ -78,12 +78,6 @@ class Game {
                this.endSound.play()
                image(this.gameOverImage, 250, 150, 500, 300)
             }
-            //  text('DragonBalls', 50, 50);
-            //  textFont("Roboto Mono");
-            //  textSize(25);
-            //  text(this.score, 200, 50);
-            //  text('Kills', 50, 100);
-            //  text(this.kills, 200, 100);
          }       
       }
    }
@@ -196,13 +190,14 @@ class Game {
       this.shots.push(new Shot(this.shotImage, this.player.x + 40, this.player.y + 30))
       this.shotSound.play()
    }
+
+    gameReset() {
+      if (this.isGameOver === true)
+      game.reset()
+    }
+       // resetten wenn neues Spiel angefangen werden soll
 }
 
-   // gameReset() {
-   //    // resetten wenn neues Spiel angefangen werden soll
-
-   // }
-
-
+   
 
 

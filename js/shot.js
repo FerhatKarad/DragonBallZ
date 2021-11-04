@@ -4,7 +4,7 @@ class Shot {
         this.x = x
         this.y = y
         this.width = 30
-        this.height = 15
+        this.height = 30
     }
 
     draw() {
