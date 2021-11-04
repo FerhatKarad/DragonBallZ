@@ -78,12 +78,12 @@ class Game {
                this.endSound.play()
                image(this.gameOverImage, 250, 150, 500, 300)
             }
-            text('DragonBalls', 50, 50);
-            textFont("Roboto Mono");
-            textSize(25);
-            text(this.score, 200, 50);
-            text('Kills', 50, 100);
-            text(this.kills, 200, 100);
+            //  text('DragonBalls', 50, 50);
+            //  textFont("Roboto Mono");
+            //  textSize(25);
+            //  text(this.score, 200, 50);
+            //  text('Kills', 50, 100);
+            //  text(this.kills, 200, 100);
          }       
       }
    }
@@ -120,7 +120,6 @@ class Game {
             return false
          } else {
             return true
-
          }
       })
    }
@@ -188,7 +187,6 @@ class Game {
             this.kills += 1
             this.hitSound.play()
             return true
-
          }
       }
       return false

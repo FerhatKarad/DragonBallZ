@@ -11,8 +11,15 @@ function setup() {
 
 function draw() {
 	    clear()
-	    game.draw()	  
-}
+	    game.draw()	 
+	  text('DragonBalls', 50, 50);
+      textFont("Roboto Mono");
+      textSize(25);
+      text(game.score, 200, 50);
+      text('Kills', 50, 100);
+      text(game.kills, 200, 100)
+}        
+
 
 function keyPressed() {
 	if (keyCode === 37) {
