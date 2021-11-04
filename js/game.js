@@ -18,11 +18,11 @@ class Game {
    setup() {
       this.background = new Background()
       this.player = new Player()
-      this.song = new Audio('./js/music/Dbz.mp3')
-      this.hitSound = new Audio('./js/music/kill.mp3');
-      this.shotSound = new Audio('./js/music/shot1.wav');
-      this.collectSound = new Audio('./js/music/collect.mp3');
-      this.endSound = new Audio('./js/music/freezer.mp3');
+      this.song = new Audio('js/music/Dbz.mp3')
+      this.hitSound = new Audio('js/music/kill.mp3');
+      this.shotSound = new Audio('js/music/shot1.wav');
+      this.collectSound = new Audio('js/music/collect.mp3');
+      this.endSound = new Audio('js/music/freezer.mp3');
       this.obstacles = []
       this.shots = []
       this.enemies = []
@@ -31,21 +31,21 @@ class Game {
 
    preload() {
       this.backgroundImages = [
-         { src: loadImage('/js/Background/background0.png'), x: 0, speed: 0 },
-         { src: loadImage('/js/Background/background1.png'), x: 0, speed: 1 },
-         { src: loadImage('/js/Background/background2.png'), x: 0, speed: 2 },
-         { src: loadImage('/js/Background/background3.png'), x: 0, speed: 3 },
-         { src: loadImage('/js/Background/background4.png'), x: 0, speed: 4 },
-         { src: loadImage('/js/Background/background5.png'), x: 0, speed: 0.5 },
+         { src: loadImage('js/Background/background0.png'), x: 0, speed: 0 },
+         { src: loadImage('js/Background/background1.png'), x: 0, speed: 1 },
+         { src: loadImage('js/Background/background2.png'), x: 0, speed: 2 },
+         { src: loadImage('js/Background/background3.png'), x: 0, speed: 3 },
+         { src: loadImage('js/Background/background4.png'), x: 0, speed: 4 },
+         { src: loadImage('js/Background/background5.png'), x: 0, speed: 0.5 },
       ]
 
-      this.playerImage = loadImage('/js/player/Goku.gif')
-      this.coinImage = loadImage('/js/Dragonball/Dragonball.gif')
-      this.shotImage = loadImage('/js/shoot/shoot1.png')
-      this.enemyImage = loadImage('/js/shoot/Saibament.png')
-      this.gameOverImage = loadImage('/js/shoot/gameover.png')
-      this.explosionImage = loadImage('/js/explosion/explosion.gif')
-      this.startImage = loadImage(('/js/shoot/startgame1.jpg'))
+      this.playerImage = loadImage('js/player/Goku.gif')
+      this.coinImage = loadImage('js/Dragonball/Dragonball.gif')
+      this.shotImage = loadImage('js/shoot/shoot1.png')
+      this.enemyImage = loadImage('js/shoot/Saibament.png')
+      this.gameOverImage = loadImage('js/shoot/gameover.png')
+      this.explosionImage = loadImage('js/explosion/explosion.gif')
+      this.startImage = loadImage(('js/shoot/startgame1.jpg'))
 
 
       //  song = loadSound ('./js/music/DragonBallSound.mp3');
