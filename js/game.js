@@ -34,6 +34,8 @@ class Game {
       this.attacks = []
       this.shots = []
       this.enemies = []
+      
+      
    }
 
    preload() {
@@ -56,7 +58,7 @@ class Game {
       this.bossImage = loadImage('js/pictures/freezer.gif')
       this.freezerShotImage = loadImage('js/pictures/reverse.gif')
       this.winImage = loadImage('js/pictures/win.jpg')
-      this.newPlayerImage = loadImage('js/pictures/newplayer.gif')
+      this.newPlayerImage = loadImage('js/pictures/aura1.gif')
    }
 
    draw() {

@@ -5,6 +5,7 @@ class Player {
         this.x = 0;
         this.y = height - this.height;
         this.shot
+        this.soundPlay = false ;
     }
     
     moveUp() {
@@ -35,12 +36,20 @@ class Player {
 
     draw() {
         if (game.score >= 4){
-            game.kaiokenSound.play()
-            
-            image(game.newPlayerImage,this.x,this.y,this.width,this.height)
-          //  game.kaiokenSound.pause()
-        }
+                  
+        image(game.newPlayerImage,this.x,this.y,this.width,this.height)
+           } 
+         if(game.score === 4 && this.soundPlay === false)  {
+             game.kaiokenSound.play()
+             this.soundPlay = true;
+         }
+
+
+
+
+
         image(game.playerImage, this.x, this.y, this.width, this.height)
+        
 
         if (keyIsDown(37)) {
             this.moveLeft()
