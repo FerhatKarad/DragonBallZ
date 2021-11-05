@@ -34,6 +34,12 @@ class Player {
 
 
     draw() {
+        if (game.score >= 4){
+            game.kaiokenSound.play()
+            
+            image(game.newPlayerImage,this.x,this.y,this.width,this.height)
+          //  game.kaiokenSound.pause()
+        }
         image(game.playerImage, this.x, this.y, this.width, this.height)
 
         if (keyIsDown(37)) {

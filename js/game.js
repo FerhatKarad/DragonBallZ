@@ -10,11 +10,13 @@ class Game {
       this.startImage
       this.bossImage
       this.freezerShotImage
+      this.newPlayerImage
       this.isGameOver = false;
       this.score = 0;
       this.kills = 0;
       this.gameStart = false;
       this.isGameWin = false;
+      
    }
 
    setup() {
@@ -26,6 +28,8 @@ class Game {
       this.shotSound = new Audio('js/music/shot1.wav');
       this.collectSound = new Audio('js/music/collect.mp3');
       this.endSound = new Audio('js/music/freezer.mp3');
+      this.winSound = new Audio('js/music/win.mp3')
+      this.kaiokenSound = new Audio ('js/music/kaioken.mp3')
       this.obstacles = []
       this.attacks = []
       this.shots = []
@@ -52,6 +56,7 @@ class Game {
       this.bossImage = loadImage('js/pictures/freezer.gif')
       this.freezerShotImage = loadImage('js/pictures/reverse.gif')
       this.winImage = loadImage('js/pictures/win.jpg')
+      this.newPlayerImage = loadImage('js/pictures/newplayer.gif')
    }
 
    draw() {
@@ -85,7 +90,9 @@ class Game {
    hasWon() {
        if (this.score > 6) {
           image(this.winImage, 0, 0, 1000, 600)
+         
           this.song.pause()
+          this.winSound.play()
 
           return noLoop()
        }
@@ -119,7 +126,7 @@ class Game {
    }
 
    drawObstacles() {
-      if (frameCount % 600 === 0) {
+      if (frameCount % 100 === 0) {
          this.obstacles.push(new Obstacle(this.coinImage))
       }
       this.obstacles.forEach(function (obstacle) {
@@ -148,7 +155,7 @@ class Game {
    }
 
    drawEnemies() {
-      if (frameCount % 70 === 0) {
+      if (frameCount % 90 === 0) {
          this.enemies.push(new Enemy(this.enemyImage))
 
       }
