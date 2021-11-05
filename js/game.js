@@ -128,7 +128,7 @@ class Game {
    }
 
    drawObstacles() {
-      if (frameCount % 100 === 0) {
+      if (frameCount % 700 === 0) {
          this.obstacles.push(new Obstacle(this.coinImage))
       }
       this.obstacles.forEach(function (obstacle) {
