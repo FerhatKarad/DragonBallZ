@@ -36,7 +36,7 @@ class Game {
       this.enemies = []
       
       
-   }
+   } 
 
    preload() {
       this.backgroundImages = [

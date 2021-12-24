@@ -40,7 +40,10 @@ class Player {
         image(game.newPlayerImage,this.x,this.y,this.width,this.height)
            } 
          if(game.score === 4 && this.soundPlay === false)  {
+             
              game.kaiokenSound.play()
+             
+             
              this.soundPlay = true;
          }
 
